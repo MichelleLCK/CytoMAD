@@ -32,7 +32,7 @@ conda install -c anaconda cudnn
 conda install pip
 pip install tensorflow-gpu==2.4
 ```
-- Install all the packages required for running beGAN codes (`Pillow`, `matplotlib`, `scipy`, `mat73`, `opencv`, `scikit-learn`, `pandas` and `imageio`)
+- Install all the packages required for running beGAN codes (`Pillow`, `matplotlib`, `scipy`, `opencv`, `scikit-learn`, `pandas`, `imageio` and `mat73`)
 ```
 conda install Pillow=9.2
 conda install -c conda-forge matplotlib==3.5.2
