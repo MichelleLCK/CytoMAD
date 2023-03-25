@@ -43,4 +43,4 @@ conda install -c anaconda pandas
 conda install -c conda-forge imageio
 pip install mat73
 ```
-The BeGAN_GPU virtual enviroment is ready for training and test.
+The BeGAN_GPU virtual enviroment is ready for training and testing.
