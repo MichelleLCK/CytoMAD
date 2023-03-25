@@ -44,3 +44,12 @@ conda install -c conda-forge imageio
 pip install mat73
 ```
 The BeGAN_GPU virtual enviroment is ready for training and testing.
+
+## 7 lung Cancer Cell Lines Dataset
+
+
+## Training the BeGAN Model
+
+
+## Load and Test the BeGAN Model
+
