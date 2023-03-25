@@ -1,11 +1,11 @@
 # beGAN
  Batch-effect Elimination Generative Adversarial Network
  
- Impressive images 
+ **Eyecatching and Impressive images** 
  
- Cite our paper
+ **Cite our paper**
  
- Brief intro on the use of beGAN.
+ **Brief intro on the use of beGAN.**
 
 
 ## Setup
