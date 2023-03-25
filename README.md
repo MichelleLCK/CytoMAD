@@ -37,10 +37,10 @@ pip install tensorflow-gpu==2.4
 conda install Pillow=9.2
 conda install -c conda-forge matplotlib==3.5.2
 conda install -c anaconda scipy 
-pip install mat73
 conda install -c conda-forge opencv
 conda install -c anaconda scikit-learn
 conda install -c anaconda pandas
 conda install -c conda-forge imageio
+pip install mat73
 ```
 The BeGAN_GPU virtual enviroment is ready for training and test.
