@@ -13,6 +13,7 @@
 ### Prerequisites
 - Window
 - NVIDIA GPU + CUDA CuDNN (CPU mode and CUDA without CuDNN may work with minimal modification, but untested)
+- Microsoft Visual Studio
 - Anaconda3
 
 ### Getting Started
@@ -20,15 +21,26 @@
 ```
 conda create --name BeGAN_GPU
 ```
-- Activate the enviroment and install python 3.8
+- Activate the enviroment and install `python`
 ```
 conda activate BeGAN_GPU
 conda install python=3.8
 ```
-
-- Install torch and dependencies from https://github.com/torch/distro
-- Install torch packages `nngraph` and `display`
-```bash
-luarocks install nngraph
-luarocks install https://raw.githubusercontent.com/szym/display/master/display-scm-0.rockspec
+- Install `cudnn`, `pip` and `tensorflow-gpu`
 ```
+conda install -c anaconda cudnn
+conda install pip
+pip install tensorflow-gpu==2.4
+```
+- Install all the packages required for running beGAN codes (`Pillow`, `matplotlib`, `scipy`, `mat73`, `opencv`, `scikit-learn`, `pandas` and `imageio`)
+```
+conda install Pillow=9.2
+conda install -c conda-forge matplotlib==3.5.2
+conda install -c anaconda scipy 
+pip install mat73
+conda install -c conda-forge opencv
+conda install -c anaconda scikit-learn
+conda install -c anaconda pandas
+conda install -c conda-forge imageio
+```
+The BeGAN_GPU virtual enviroment is ready for training and test.
