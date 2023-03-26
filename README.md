@@ -52,7 +52,8 @@ The 7 lung cancer cell lines dataset is uploaded in this repository. It is used 
 
 There are in total of 7 types of lung cancer cells (i.e. H69, H358, H520, H526, H1975, H2170 and HCC827). All the data were collected on 7 days using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479), giving 3 batches per cell lines. Both single-cell brightfield and quantitative phase images (QPI) were collected.
 
-For training and testing the beGAN model, the data were separated into "Train", "Valid" and "Test" set, each of them containing 1000, 1000 and 7000 cells respectively. Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm.
+For training and testing the beGAN model, the data were separated into "Train", "Valid" and "Test" set. They are subsampled and contain 500 cells respectively as a demonstration in this repository(`Dataset`). Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm. 
+<sub>Full dataset will be released upon request.</sub>
 
 ## Training the BeGAN Model
 Overall, the training of beGAN model consist of 2 main parts. It utilizes the conditional GAN of Pix2Pix model as backbone with the addition of classifier networks to guide the batch-effect-removal.
@@ -328,7 +329,7 @@ def define_mapping_gan(g_model, d_model, cell_model, cell_model_CNN, batch_model
 ```
 
 The predicted images will be saved in folder `./Figures` and the trained model will be saved in folder `./ModelParameters`.
-The entire code is available in [BeGAN_7LungCancer_Train.py](https://github.com/MichelleLCK/beGAN/blob/dc77129aac886a817873e2c9606a9be2fb6533da/BeGAN_7LungCancer_Train.py).
+The entire code is available in [BeGAN_7LungCancer_Train.py](https://github.com/MichelleLCK/beGAN/blob/011e52fd44118f9bf828989ab85cdd0e1193710e/BeGAN_7LungCancer_Train.py).
 
 ## Load and Test the BeGAN Model
 Select and load the trained BeGAN model for generating batch-free images and features.
@@ -336,9 +337,9 @@ Select and load the trained BeGAN model for generating batch-free images and fea
 # load saved beGAN model
 modelpath = SavePath+'\\ModelParameters'
 modelfolder = 'XXXXXXXX_XXXXXX_BeGAN_With_Batch_Removal'
-modelname = 'model_XXXXXX.h5'
+modelname = 'BeGANmodel_XXXXXX.h5'
 g_model = load_model(modelpath + '\\' + modelfolder + '\\' + modelname)
 ```
 
 The predicted output will be saved in folder `./TestData`.
-The entire code is available in [BeGAN_7LungCancer_Test.py](https://github.com/MichelleLCK/beGAN/blob/dc77129aac886a817873e2c9606a9be2fb6533da/BeGAN_7LungCancer_Test.py).
+The entire code is available in [BeGAN_7LungCancer_Test.py](https://github.com/MichelleLCK/beGAN/blob/011e52fd44118f9bf828989ab85cdd0e1193710e/BeGAN_7LungCancer_Test.py).
