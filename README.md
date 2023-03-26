@@ -151,7 +151,7 @@ def define_discriminator(input_shape, output_shape, Lrate = 0.000001):
 	in_target_image = Input(shape=output_shape)
 	# concatenate images channel-wise
 	merged = Concatenate()([in_src_image, in_target_image])
-    # C64
+	# C64
 	d = Conv2D(64, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(merged)
 	d = LeakyReLU(alpha=0.2)(d)
 	# C128
@@ -255,7 +255,7 @@ def define_CNN(input_shape, NoOfClass, Lrate = 0.001):
 	init = RandomNormal(stddev=0.02)
 	# source image input
 	in_src_image = Input(shape=input_shape)
- # C64
+	# C64
 	d = Conv2D(64, (4,4), strides=(2,2), padding='same', kernel_initializer=init)(in_src_image)
 	d = LeakyReLU(alpha=0.2)(d)
 	# C128
