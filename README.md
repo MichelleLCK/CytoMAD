@@ -328,7 +328,7 @@ def define_mapping_gan(g_model, d_model, cell_model, cell_model_CNN, batch_model
 ```
 
 The predicted images will be saved in folder `./Figures` and the trained model will be saved in folder `./ModelParameters`.
-The entire code is available in [BeGAN_7LungCancer_Train.py](https://github.com/MichelleLCK/beGAN/blob/7e47449ae40f82537d93705581f49f9eb3934cae/BeGAN_7LungCancer_Train.py).
+The entire code is available in [BeGAN_7LungCancer_Train.py](https://github.com/MichelleLCK/beGAN/blob/dc77129aac886a817873e2c9606a9be2fb6533da/BeGAN_7LungCancer_Train.py).
 
 ## Load and Test the BeGAN Model
 Select and load the trained BeGAN model for generating batch-free images and features.
@@ -341,4 +341,4 @@ g_model = load_model(modelpath + '\\' + modelfolder + '\\' + modelname)
 ```
 
 The predicted output will be saved in folder `./TestData`.
-The entire code is available in [BeGAN_7LungCancer_Test.py](https://github.com/MichelleLCK/beGAN/blob/52c4985a987a886861c95ab6414469773e335e7f/BeGAN_7LungCancer_Test.py).
+The entire code is available in [BeGAN_7LungCancer_Test.py](https://github.com/MichelleLCK/beGAN/blob/dc77129aac886a817873e2c9606a9be2fb6533da/BeGAN_7LungCancer_Test.py).
