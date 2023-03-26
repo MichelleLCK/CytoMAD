@@ -1,4 +1,4 @@
-# beGAN
+# BeGAN
  Batch-effect Elimination Generative Adversarial Network
  
  **Eyecatching and Impressive images** 
