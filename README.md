@@ -46,7 +46,13 @@ pip install mat73
 The BeGAN_GPU virtual enviroment is ready for training and testing.
 
 ## 7 lung Cancer Cell Lines Dataset
+The 7 lung cancer cell lines dataset is uploaded in this repository. It is used as an demonstration on batch removal and image contrast conversion of the beGAN model. 
 
+**7 Lung Cancer Cell Lines BF and QPI Images**
+
+There are in total of 7 types of lung cancer cells (i.e. H69, H358, H520, H526, H1975, H2170 and HCC827). All the data were collected on 7 days using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479), giving 3 batches per cell lines. Both single-cell brightfield and quantitative phase images (QPI) were collected.
+
+For training and testing the beGAN model, the data were separated into "Train", "Valid" and "Test" set, each of them containing 1000, 1000 and 7000 cells respectively. Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm.
 
 ## Training the BeGAN Model
 
