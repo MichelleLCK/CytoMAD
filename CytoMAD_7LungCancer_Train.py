@@ -5,7 +5,7 @@ Created on Sat March 25 13:52:03 2023
 
 @author: Michelle C.K. lo
 """
-# example of BeGAN with image contrast conversion from single-cell brightfield to QPI, together with batch removal
+# example of CytoMAD with image contrast conversion from single-cell brightfield to QPI, together with batch removal
 from numpy import zeros
 from numpy import ones
 from tensorflow.keras.optimizers import Adam
@@ -233,7 +233,7 @@ def define_generator(image_shape=(256, 256, 1)):
 	model.summary()
 	return model
 
-# define the pretraining beGAN model
+# define the pretraining CytoMAD model
 def define_gan(g_model, d_model, image_shape):
 	# make weights in the discriminator not trainable
 	d_model.trainable = False
@@ -251,7 +251,7 @@ def define_gan(g_model, d_model, image_shape):
 	model.compile(loss=['binary_crossentropy', 'mae'], optimizer=opt, loss_weights=[1,100])
 	return model
 
-# define the beGAN model
+# define the CytoMAD model
 def define_mapping_gan(g_model, d_model, cell_model, cell_model_CNN, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, image_shape):
 	# make weights in the discriminator not trainable
 	d_model.trainable = False
@@ -364,8 +364,8 @@ def summarize_performance(step, g_model, dataset, Path_Figures, Path_MP, n_sampl
 	g_model.save(Path_MP + '\\'+filename2)
 	print('>Saved: %s and %s' % (filename1, filename2))
     
-# generate beGAN samples and save as a plot and save the models
-def summarize_performance_all(step, d_model, g_model, cell_model_CNN, cell_model, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, dataset, Path_Figures_beGAN, Path_MP_beGAN, n_samples=3):
+# generate CytoMAD samples and save as a plot and save the models
+def summarize_performance_all(step, d_model, g_model, cell_model_CNN, cell_model, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, dataset, Path_Figures_CytoMAD, Path_MP_CytoMAD, n_samples=3):
 
 	[X_realA, X_realB, _, _, _, _], _ = generate_real_samples(dataset, n_samples, 1)
 	# generate a batch of fake samples
@@ -400,14 +400,14 @@ def summarize_performance_all(step, d_model, g_model, cell_model_CNN, cell_model
 		pyplot.imshow(Image)
 	# save plot to file
 	filename1 = 'plot_all_%06d.png' % (step+1)
-	pyplot.savefig(Path_Figures_beGAN +'\\'+filename1)
+	pyplot.savefig(Path_Figures_CytoMAD +'\\'+filename1)
 	pyplot.close()
 	# save the generator model
-	filename2 = 'BeGANmodel_%06d.h5' % (step+1)
-	g_model.save(Path_MP_beGAN +'\\'+filename2)
+	filename2 = 'CytoMADmodel_%06d.h5' % (step+1)
+	g_model.save(Path_MP_CytoMAD +'\\'+filename2)
 	# save the discriminator model
 	filename3 = 'dmodel_all_%06d.h5' % (step+1)
-	d_model.save(Path_MP_beGAN +'\\'+filename3)
+	d_model.save(Path_MP_CytoMAD +'\\'+filename3)
 
 	# summarize performance
 	[X_realA, _, _, cell_onehot, _, batch_onehot], _ = generate_real_samples(dataset, dataset[0].shape[0], 1)
@@ -446,25 +446,25 @@ def summarize_performance_all(step, d_model, g_model, cell_model_CNN, cell_model
 	print('Cell CNN accuracy:', c_CNN_accuracy)
 
 	filename4 = 'bmodel1_all_%06d_%.3f.h5' % (step+1, b_accuracy1)
-	batch_model1.save(Path_MP_beGAN +'\\'+filename4)
+	batch_model1.save(Path_MP_CytoMAD +'\\'+filename4)
 
 	filename5 = 'bmodel2_all_%06d_%.3f.h5' % (step+1, b_accuracy2)
-	batch_model2.save(Path_MP_beGAN +'\\'+filename5)
+	batch_model2.save(Path_MP_CytoMAD +'\\'+filename5)
 
 	filename6 = 'bmodel3_all_%06d_%.3f.h5' % (step+1, b_accuracy3)
-	batch_model3.save(Path_MP_beGAN +'\\'+filename6)
+	batch_model3.save(Path_MP_CytoMAD +'\\'+filename6)
 
 	filename7 = 'bmodel4_all_%06d_%.3f.h5' % (step+1, b_accuracy4)
-	batch_model4.save(Path_MP_beGAN +'\\'+filename7)
+	batch_model4.save(Path_MP_CytoMAD +'\\'+filename7)
     
 	filename8 = 'cmodel_all_%06d_%.3f.h5' % (step+1, c_accuracy)
-	cell_model.save(Path_MP_beGAN +'\\'+filename8)
+	cell_model.save(Path_MP_CytoMAD +'\\'+filename8)
 
 	filename9 = 'bmodelCNN_all_%06d_%.3f.h5' % (step+1, b_CNN_accuracy)
-	batch_model_CNN.save(Path_MP_beGAN +'\\'+filename9)
+	batch_model_CNN.save(Path_MP_CytoMAD +'\\'+filename9)
     
 	filename10 = 'cmodelCNN_all_%06d_%.3f.h5' % (step+1, c_CNN_accuracy)
-	cell_model_CNN.save(Path_MP_beGAN +'\\'+filename10)
+	cell_model_CNN.save(Path_MP_CytoMAD +'\\'+filename10)
 
 	print('>Saved: %s, %s, %s, %s, %s, %s, %s, %s, %s and %s' % (filename1, filename2, filename3, filename4, filename5, filename6, filename7, filename8, filename9, filename10))
 
@@ -560,7 +560,7 @@ def load_multi_dataset(BasePath, Date, Cells, state, cellsCount):
 	return [X1, X2, C1, C_onehot, C_dict, B1, B_onehot, B_dict]
     
 # train pix2pix models
-def train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_model, dataset, dataset_valid, timestr, NoOfBatch, batch_Lrate, batch_input_shape, Path_Figures, Path_Figures_beGAN, Path_MP, Path_MP_beGAN, n_epochs1=100, n_epochs2=100, n_epochs3=300, epoch_interval = 5, n_batch=10):
+def train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_model, dataset, dataset_valid, timestr, NoOfBatch, batch_Lrate, batch_input_shape, Path_Figures, Path_Figures_CytoMAD, Path_MP, Path_MP_CytoMAD, n_epochs1=100, n_epochs2=100, n_epochs3=300, epoch_interval = 5, n_batch=10):
 	# Determine the output square shape of the discriminator
 	n_patch = d_model.output_shape[1]
     
@@ -661,7 +661,7 @@ def train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_mod
 			batch_model2.fit(features_gen[:,RandomFeaturesList2], batch_onehot, epochs=n_epochs2, validation_split=0.1)
 			batch_model3.fit(features_gen[:,RandomFeaturesList3], batch_onehot, epochs=n_epochs2, validation_split=0.1)
 			batch_model4.fit(features_gen[:,RandomFeaturesList4], batch_onehot, epochs=n_epochs2, validation_split=0.1)
-            # Define BeGAN Model
+            # Define CytoMAD Model
 			mapping_model_gan = define_mapping_gan(g_model, d_model, cell_model, cell_model_CNN, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, input_shape)
 
 		# select a batch of real samples
@@ -677,7 +677,7 @@ def train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_mod
 		_ = d_model.train_on_batch([X_realA, X_realB], y_real)
         # update discriminator with predicted samples
 		_ = d_model.train_on_batch([X_realA, X_fakeB], y_fake)
-		# update beGAN model
+		# update CytoMAD model
 		gan_loss, d_loss, c_CNN_loss, c_loss, b_CNN_loss, b_loss1, b_loss2, b_loss3, b_loss4, g_loss = mapping_model_gan.train_on_batch(X_realA, [y_real, cell_onehot, cell_onehot, fake_batch_onehot, fake_batch_onehot, fake_batch_onehot, fake_batch_onehot, fake_batch_onehot, X_realB])
 
 		# summarize performance
@@ -709,7 +709,7 @@ def train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_mod
 		if (i+1) % (bat_per_epo) == 0:
 			g_loss_valid, _, _, _, _, _, _, _, _, _ = mapping_model_gan.test_on_batch(X_realA_test, [y_real_test, cell_onehot_test, cell_onehot_test, fake_batch_onehot_test, fake_batch_onehot_test, fake_batch_onehot_test, fake_batch_onehot_test, fake_batch_onehot_test, X_realB_test])
 			if g_loss_valid < g_loss_valid_reference:
-				summarize_performance_all(i, d_model, g_model, cell_model_CNN, cell_model, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, dataset_valid, Path_Figures_beGAN, Path_MP_beGAN)
+				summarize_performance_all(i, d_model, g_model, cell_model_CNN, cell_model, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, dataset_valid, Path_Figures_CytoMAD, Path_MP_CytoMAD)
 				g_loss_valid_reference = g_loss_valid
 				g_model_best = g_model
 				d_model_best = d_model
@@ -767,19 +767,19 @@ timestr = time.strftime("%Y%m%d_%H%M%S")
 BasePath_Figures = SavePath+'\\Figures'
 if not os.path.exists(BasePath_Figures):
     os.mkdir(BasePath_Figures)
-Path_Figures = BasePath_Figures + '\\' + timestr + '_Pretraining_BeGAN_With_Image_Coversion'
+Path_Figures = BasePath_Figures + '\\' + timestr + '_Pretraining_CytoMAD_With_Image_Coversion'
 os.mkdir(Path_Figures)
-Path_Figures_beGAN = BasePath_Figures + '\\' + timestr + '_BeGAN_With_Batch_Removal'
-os.mkdir(Path_Figures_beGAN)
+Path_Figures_CytoMAD = BasePath_Figures + '\\' + timestr + '_CytoMAD_With_Batch_Removal'
+os.mkdir(Path_Figures_CytoMAD)
 
 # Create path for saving trained models
 BasePath_MP = SavePath+'\\ModelParameters'
 if not os.path.exists(BasePath_MP):
     os.mkdir(BasePath_MP)
-Path_MP = BasePath_MP + '\\' + timestr + '_Pretraining_BeGAN_With_Image_Coversion'
+Path_MP = BasePath_MP + '\\' + timestr + '_Pretraining_CytoMAD_With_Image_Coversion'
 os.mkdir(Path_MP)
-Path_MP_beGAN = BasePath_MP + '\\' + timestr + '_BeGAN_With_Batch_Removal'
-os.mkdir(Path_MP_beGAN)
+Path_MP_CytoMAD = BasePath_MP + '\\' + timestr + '_CytoMAD_With_Batch_Removal'
+os.mkdir(Path_MP_CytoMAD)
 
 ###### Start training ######
-train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_model, dataset, dataset_valid, timestr, NoOfBatch, batch_Lrate, batch_input_shape, Path_Figures, Path_Figures_beGAN, Path_MP, Path_MP_beGAN)
+train(d_model, g_model, cell_model, cell_model_CNN, batch_model_CNN, gan_model, dataset, dataset_valid, timestr, NoOfBatch, batch_Lrate, batch_input_shape, Path_Figures, Path_Figures_CytoMAD, Path_MP, Path_MP_CytoMAD)
