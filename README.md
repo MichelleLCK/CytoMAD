@@ -1,12 +1,12 @@
-# BeGAN
- Batch-effect Elimination Generative Adversarial Network
- 
- **Eyecatching and Impressive images** 
- 
+# CytoMAD
+ Cyto-Morphology Adversarial Distillation
+
+ ![1 CytoMAD](https://github.com/MichelleLCK/CytoMAD/assets/120153122/f55aa5f8-f38a-4c24-9c62-457f08c63279)
+
  **Cite our paper**
  
- **Brief intro on the use of beGAN.**
-The beGAN model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) architect with the classification networks, which altogether enables robust cell images conversion among different image contrast and achieves batch information removal on the image level.
+ **Brief intro on the use of CytoMAD.**
+The CytoMAD model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) architect with the classification networks, which altogether enables robust cell images conversion among different image contrast and achieves batch information removal on the image level.
 
 ## Setup
 
@@ -17,13 +17,13 @@ The beGAN model is a generative deep learning model that integrates conditional 
 - Anaconda3
 
 ### Getting Started
-- Open Anaconda Prompt and create a new virtual enviroment named as BeGAN_GPU
+- Open Anaconda Prompt and create a new virtual environment named as CytoMAD_GPU
 ```
-conda create --name BeGAN_GPU
+conda create --name CytoMAD_GPU
 ```
-- Activate the enviroment and install `python`
+- Activate the environment and install `python`
 ```
-conda activate BeGAN_GPU
+conda activate CytoMAD_GPU
 conda install python=3.8
 ```
 - Install `cudnn`, `pip` and `tensorflow-gpu`
@@ -32,7 +32,7 @@ conda install -c anaconda cudnn
 conda install pip
 pip install tensorflow-gpu==2.4
 ```
-- Install all the packages required for running beGAN codes (`Pillow`, `matplotlib`, `scipy`, `opencv`, `scikit-learn`, `pandas`, `imageio` and `mat73`)
+- Install all the packages required for running CytoMAD codes (`Pillow`, `matplotlib`, `scipy`, `opencv`, `scikit-learn`, `pandas`, `imageio` and `mat73`)
 ```
 conda install Pillow=9.2
 conda install -c conda-forge matplotlib==3.5.2
@@ -43,26 +43,26 @@ conda install -c anaconda pandas
 conda install -c conda-forge imageio
 pip install mat73
 ```
-The BeGAN_GPU virtual enviroment is ready for training and testing.
+The CytoMAD_GPU virtual environment is ready for training and testing.
 
 ## 7 lung Cancer Cell Lines Dataset
-The 7 lung cancer cell lines dataset is uploaded in this repository. It is used as an demonstration on batch removal and image contrast conversion of the beGAN model. 
+The 7 lung cancer cell lines dataset is uploaded in this repository. It is used as a demonstration on batch removal and image contrast conversion of the CytoMAD model. 
 
 **7 Lung Cancer Cell Lines BF and QPI Images**
 
-There are in total of 7 types of lung cancer cells (i.e. H69, H358, H520, H526, H1975, H2170 and HCC827). All the data were collected on 7 days using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479), giving 3 batches per cell lines. Both single-cell brightfield and quantitative phase images (QPI) were collected.
+There are in total of 7 types of lung cancer cells (i.e. H69, H358, H520, H526, H1975, H2170 and HCC827). All the data were collected on 7 days using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479), giving 3 batches per cell line. Both single-cell brightfield and quantitative phase images (QPI) were collected.
 
-For training and testing the beGAN model, the data were separated into "Train", "Valid" and "Test" set. They are subsampled and contain 500 cells respectively as a demonstration in this repository (Folder `Dataset`). Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm. 
+For training and testing the CytoMAD model, the data were separated into "Train", "Valid" and "Test" set. They are subsampled and contain 500 cells respectively as a demonstration in this repository (Folder `Dataset`). Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in the format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm. 
 
 <sub>Full dataset will be released upon request.</sub>
 
-## Training the BeGAN Model
-Overall, the training of beGAN model consist of 2 main parts. It utilizes the conditional GAN of Pix2Pix model as backbone with the addition of classifier networks to guide the batch-effect-removal.
+## Training the CytoMAD Model
+Overall, the training of CytoMAD model consists of 2 main parts. It utilizes the conditional GAN of Pix2Pix model as the backbone with the addition of classifier networks to guide the batch-effect-removal.
 
 ### Pre-training of the Pix2Pix Backbone
 The basic framework of conditional GAN takes in cell images of particular imaging contrasts (e.g. brightfield) as model input. 
 
-The images would then be directed to the `generator` and undergo multiple layers of 2-dimensional (2D) convolutional layers, normalization layers and mathematical functions, eventually be condensed into a 1-dimensional (1D) array at the bottleneck. Such array only describes the important features extracted from the cell images. The output images of the model, which are the cell images of different imaging contrast (e.g. QPI), are reconstructed based on these concise 1D information through deconvolutional layers and mathematical equations. 
+The images would then be directed to the `generator` and undergo multiple layers of 2-dimensional (2D) convolutional layers, normalization layers and mathematical functions, eventually be condensed into a 1-dimensional (1D) array at the bottleneck. Such array only describes the important features extracted from the cell images. The output images of the model, which are the cell images of different imaging contrast (e.g. QPI), are reconstructed based on this concise 1D information through deconvolutional layers and mathematical equations. 
 ```
 # define an encoder block
 def define_encoder_block(layer_in, n_filters, batchnorm=True):
@@ -141,7 +141,7 @@ def define_generator(image_shape=(256, 256, 1)):
 	return model
 ```
 
-The `discriminator` model is a classifier which classify between the target images and the generator's output images. It is used to guide and tune to the generator for predicting accurate target images. With these, the conditional GAN converts cell images from one imaging contrast to another. 
+The `discriminator` model is a classifier which classifies between the target images and the generator's output images. It is used to guide and tune the generator for predicting accurate target images. With these, the conditional GAN converts cell images from one imaging contrast to another. 
 ```
 # define the discriminator model
 def define_discriminator(input_shape, output_shape, Lrate = 0.000001):
@@ -184,7 +184,7 @@ def define_discriminator(input_shape, output_shape, Lrate = 0.000001):
 	model.summary()
 	return model
  
- # define the pretraining beGAN model
+ # define the pretraining CytoMAD model
 def define_gan(g_model, d_model, image_shape):
 	# make weights in the discriminator not trainable
 	d_model.trainable = False
@@ -204,7 +204,7 @@ def define_gan(g_model, d_model, image_shape):
 ```
 
 ### Classifiers-guided Batch Effect Removal
-BeGAN differs itself from the ordinary conditional GAN by the additional classification networks. To remove batch-to-batch variations while preserving biological differences, the classification networks takes a key role here through 2 types of classifiers, the batch classifiers and cell type classifiers. 
+CytoMAD differs itself from the ordinary conditional GAN by the additional classification networks. To remove batch-to-batch variations while preserving biological differences, the classification networks take a key role here through 2 types of classifiers, the batch classifiers and cell type classifiers. 
 
 At the bottleneck region, the batch classifiers aim in eliminating batch-related information with the cell type classifier conserving the cellular variations in the 1D features, with the basic framework of neural network.
 ```
@@ -249,7 +249,7 @@ def define_classifier_dropout(NoOfClass, input_shape = (100,), Lrate = 0.0001):
 	return model
 ```
 
-The batch and cell type classifiers that based on convolutional neural networks also present by the end of conditional GAN for guiding the reconstruction of batch-free cell images. 
+The batch and cell type classifiers that based on convolutional neural networks are also present by the end of conditional GAN for guiding the reconstruction of batch-free cell images. 
 ```
 # define the convolutional-neural-network-based classifier model
 def define_CNN(input_shape, NoOfClass, Lrate = 0.001):
@@ -294,9 +294,9 @@ def define_CNN(input_shape, NoOfClass, Lrate = 0.001):
 	return model
 ```
 
-Overall, the classification networks forms a feedback system with the basic conditional GAN framework for disentangling the batch information from the biological variations of interest, and eventually, achieving batch-free property at both the concise 1D biophysical phenotyping and the endmost reconstructed images.
+Overall, the classification networks form a feedback system with the basic conditional GAN framework for disentangling the batch information from the biological variations of interest, and eventually, achieving batch-free property at both the concise 1D biophysical phenotyping and the endmost reconstructed images.
 ```
-# define the beGAN model
+# define the CytoMAD model
 def define_mapping_gan(g_model, d_model, cell_model, cell_model_CNN, batch_model_CNN, batch_model1, batch_model2, batch_model3, batch_model4, RandomFeaturesList1, RandomFeaturesList2, RandomFeaturesList3, RandomFeaturesList4, image_shape):
 	# make weights in the discriminator not trainable
 	d_model.trainable = False
@@ -329,18 +329,18 @@ def define_mapping_gan(g_model, d_model, cell_model, cell_model_CNN, batch_model
 	return model
 ```
 
-The predicted images will be saved in folder `./Figures` and the trained model will be saved in folder `./ModelParameters`.
-The entire code is available in [BeGAN_7LungCancer_Train.py](https://github.com/MichelleLCK/beGAN/blob/011e52fd44118f9bf828989ab85cdd0e1193710e/BeGAN_7LungCancer_Train.py).
+The predicted images will be saved in the folder `./Figures` and the trained model will be saved in the folder `./ModelParameters`.
+The entire code is available in [CytoMAD_7LungCancer_Train.py](https://github.com/MichelleLCK/CytoMAD/blob/011e52fd44118f9bf828989ab85cdd0e1193710e/CytoMAD_7LungCancer_Train.py).
 
-## Load and Test the BeGAN Model
-Select and load the trained BeGAN model for generating batch-free images and features.
+## Load and Test the CytoMAD Model
+Select and load the trained CytoMAD model for generating batch-free images and features.
 ```
-# load saved beGAN model
+# load saved CytoMAD model
 modelpath = SavePath+'\\ModelParameters'
-modelfolder = 'XXXXXXXX_XXXXXX_BeGAN_With_Batch_Removal'
-modelname = 'BeGANmodel_XXXXXX.h5'
+modelfolder = 'XXXXXXXX_XXXXXX_CytoMAD_With_Batch_Removal'
+modelname = 'CytoMADmodel_XXXXXX.h5'
 g_model = load_model(modelpath + '\\' + modelfolder + '\\' + modelname)
 ```
 
-The predicted output will be saved in folder `./TestData`.
-The entire code is available in [BeGAN_7LungCancer_Test.py](https://github.com/MichelleLCK/beGAN/blob/011e52fd44118f9bf828989ab85cdd0e1193710e/BeGAN_7LungCancer_Test.py).
+The predicted output will be saved in the folder `./TestData`.
+The entire code is available in [CytoMAD_7LungCancer_Test.py](https://github.com/MichelleLCK/CytoMAD/blob/011e52fd44118f9bf828989ab85cdd0e1193710e/CytoMAD_7LungCancer_Test.py).
