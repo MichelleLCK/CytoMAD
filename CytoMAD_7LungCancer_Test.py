@@ -4,7 +4,7 @@ Created on Sat March 25 13:52:03 2023
 
 @author: Michelle C.K. lo
 """
-# example of BeGAN with image contrast conversion from single-cell brightfield to QPI, together with batch removal
+# example of CytoMAD with image contrast conversion from single-cell brightfield to QPI, together with batch removal
 from tensorflow.keras.models import load_model
 import numpy as np
 import mat73
@@ -109,10 +109,10 @@ Date = ['Batch1','Batch3','Batch4','Batch1','Batch2','Batch5', 'Batch3','Batch6'
 Cells = ['H69', 'H69', 'H69', 'H358', 'H358', 'H358','H520','H520','H520','H526','H526','H526','H1975','H1975','H1975', 'H2170','H2170','H2170', 'HCC827','HCC827','HCC827']
 state = 'Test'
 
-# load saved beGAN model
+# load saved CytoMAD model
 modelpath = SavePath+'\\ModelParameters'
-modelfolder = 'XXXXXXXX_XXXXXX_BeGAN_With_Batch_Removal'
-modelname = 'BeGANmodel_XXXXXX.h5'
+modelfolder = 'XXXXXXXX_XXXXXX_CytoMAD_With_Batch_Removal'
+modelname = 'CytoMADmodel_XXXXXX.h5'
 g_model = load_model(modelpath + '\\' + modelfolder + '\\' + modelname)
 
 # Create folders for saving predicted test data
@@ -131,15 +131,15 @@ for i in range(len(Date)):
     print('Loaded', X1.shape, X2.shape)
     src_image, tar_image = X1, X2
 
-    # generate beGAN prediction
+    # generate CytoMAD prediction
     [gen_image, gen_features] = g_model.predict(src_image)
     src_image = np.float32(src_image)
     tar_image = np.float32(tar_image)
     gen_features = np.squeeze(gen_features, axis=2)
     gen_features = np.squeeze(gen_features, axis=1)
     
-    # save beGAN prediction
+    # save CytoMAD prediction
     print('Saving: ',  Batch[0] , ' ', Cell[0])
-    scipy.io.savemat(Path_TestData + '\\BeGAN_test_'+modelname[:-3]+'_'+Batch[0]+'_'+Cell[0]+'.mat',mdict={'BeGAN_image': gen_image, 'BeGAN_features': gen_features})
-    scipy.io.savemat(Path_TestData + '\\BeGAN_test_'+modelname[:-3]+'_'+Batch[0]+'_'+Cell[0]+'_QPI.mat',mdict={'QPI': tar_image})
-    scipy.io.savemat(Path_TestData + '\\BeGAN_test_'+modelname[:-3]+'_'+Batch[0]+'_'+Cell[0]+'_BF.mat',mdict={'BF': src_image})
+    scipy.io.savemat(Path_TestData + '\\CytoMAD_test_'+modelname[:-3]+'_'+Batch[0]+'_'+Cell[0]+'.mat',mdict={'CytoMAD_image': gen_image, 'CytoMAD_features': gen_features})
+    scipy.io.savemat(Path_TestData + '\\CytoMAD_test_'+modelname[:-3]+'_'+Batch[0]+'_'+Cell[0]+'_QPI.mat',mdict={'QPI': tar_image})
+    scipy.io.savemat(Path_TestData + '\\CytoMAD_test_'+modelname[:-3]+'_'+Batch[0]+'_'+Cell[0]+'_BF.mat',mdict={'BF': src_image})
