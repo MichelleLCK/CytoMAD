@@ -357,7 +357,7 @@ In this experiment, H2170 were treated with 3 drugs of different mechanism of ac
 ![LungCancerDrugTable](https://github.com/MichelleLCK/CytoMAD/assets/120153122/823150fa-1bbc-4c17-9f73-62397933cbea)
 
 
-For training and testing the CytoMAD model, the data were separated into "Train", "Valid" and "Test" set. They are subsampled and contain 500 cells respectively as a demonstration in this repository (Folder `Dataset`). Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in the format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm. 
+For training and testing the CytoMAD model, the data were separated into "Train", "Valid" and "Test" set. They are subsampled and contain 400 cells respectively as a demonstration in this repository (Folder `Dataset`). Data was uploaded in `.mat` format with brightfield images in `_BF.mat` and QPI in `_QPI.mat`. The images are stored in the format of `ImageHeight * ImageWidth * NoOfCells` with a field of view of 45μm. 
 
 <sub>Full dataset will be released upon request.</sub>
 
