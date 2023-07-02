@@ -1,7 +1,7 @@
 ## 7 lung Cancer Cell Lines Dataset
 The 7 lung cancer cell lines dataset is uploaded in this repository. It is used as an demonstration on batch removal and image contrast conversion of the beGAN model. 
 
-**7 Lung Cancer Cell Lines BF and QPI Images**
+![LungCancerCellLinesResult](https://github.com/MichelleLCK/CytoMAD/assets/120153122/cfcd0932-c53e-4fa5-abce-a58a1da78cb0)
 
 There are in total of 7 types of lung cancer cells (i.e. H69, H358, H520, H526, H1975, H2170 and HCC827). All the data were collected on 7 days using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479), giving 3 batches per cell lines. Both single-cell brightfield and quantitative phase images (QPI) were collected.
 
