@@ -3,8 +3,7 @@
 
  ![1 CytoMAD](https://www.dropbox.com/scl/fi/kv1v5vzcysj31rblk2nll/1-CytoMAD.png?rlkey=gqyivdwipbav62idvffbgfsri&dl=0)
  
- **Brief intro on the use of CytoMAD.**
-The CytoMAD model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) architect with the classification networks, which altogether enables robust cell images conversion among different image contrast and achieves batch information removal on the image level.
+The CytoMAD model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) coupled with the classification networks, which altogether enables robust cell images conversion among different image contrast and achieves batch information removal on the image level.
 
 ## Setup
 
