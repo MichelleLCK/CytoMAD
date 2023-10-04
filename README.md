@@ -334,7 +334,7 @@ The predicted output will be saved in the folder `./TestData`.
 The 7 lung cancer cell lines dataset is uploaded in this repository. It is used as a demonstration on batch removal and image contrast conversion of the CytoMAD model. 
 
 
-![LungCancerCellLinesResult](https://github.com/MichelleLCK/CytoMAD/assets/120153122/0b5e0d14-e8e5-4d6c-85ce-13d9926d6b70)
+![LungCancerCellLinesResult](https://github.com/MichelleLCK/CytoMAD/assets/120153122/2e396e0d-f101-4918-a5e5-b1239f8cf9ad)
 
 
 There are in total of 7 types of lung cancer cells (i.e. H69, H358, H520, H526, H1975, H2170 and HCC827). All the data were collected on 7 days using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479), giving 3 batches per cell line. Both single-cell brightfield and quantitative phase images (QPI) were collected.
@@ -348,13 +348,15 @@ The entire training code and test code are available in [CytoMAD_7LungCancer_Tra
 ## Drug Treatment Response of Lung Cancer Cell H2170 Dataset
 The drug treatment response of H2170 dataset is uploaded in this repository. It serves as another demonstration on batch removal and image contrast conversion of the CytoMAD model. 
 
-![LungCancerDrugResult](https://github.com/MichelleLCK/CytoMAD/assets/120153122/817ccb87-bf3b-4541-a4db-662d3cf4fc6d)
+![LungCancerDrugResult](https://github.com/MichelleLCK/CytoMAD/assets/120153122/95d8ebae-bbfd-43d1-824e-a755d4746af4)
+
 
 
 
 In this experiment, H2170 were treated with 3 drugs of different mechanism of action (MoA) (i.e. Docetaxel, Afatinib and Gemcitabine), each with 5 concentration levels and a negative control with dimethyl sulfoxide (DMSO) for 24 hours as listed below. They were imaged using [multi-ATOM setup](https://doi.org/10.1002/jbio.201800479) for single-cell BF and QPI images on 6 days, forming 2 batches with ~100,000 cells per drug. Basically, this dataset consists of 2 batches of data, with each batch containing 3 different drug treatments and each treatment comprising 6 different concentration conditions. This results in 18 unique drug treatment conditions in each batch.
 
-![LungCancerDrugTable](https://github.com/MichelleLCK/CytoMAD/assets/120153122/ca60b2e9-2b08-40ec-8693-bf5338c00280)
+
+![LungCancerDrugTable](https://github.com/MichelleLCK/CytoMAD/assets/120153122/02f49ebf-1c6f-4b86-b375-d8e10a2b32fe)
 
 
 
