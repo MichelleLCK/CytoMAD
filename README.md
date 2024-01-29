@@ -1,7 +1,7 @@
 # CytoMAD
  Cyto-Morphology Adversarial Distillation
-
-![1_new CytoMAD](https://github.com/MichelleLCK/CytoMAD/assets/120153122/0706fc3d-2790-4e94-8b08-8aa2be15a016)
+ 
+![1_new CytoMAD](https://github.com/MichelleLCK/CytoMAD/assets/120153122/b1fad76e-1ca5-49aa-bcf5-686bbafa1ff5)
 
  
 The CytoMAD model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) coupled with the classification networks, which altogether enables robust cell images conversion among different image contrast and achieves batch information removal on the image level.
