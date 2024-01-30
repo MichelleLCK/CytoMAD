@@ -8,7 +8,7 @@ The CytoMAD model is a generative deep learning model that integrates conditiona
 
 ### Preprint
 
-Lo, M. C., Siu, D. M., Lee, K. C., Wong, J. S., Yeung, C.F., Hsin, M. K., Ho, J. C., & Tsia, K. K. (2023). [Information-Distilled Generative Label-Free Morphological Profiling Encodes Cellular Heterogeneity](https://www.biorxiv.org/content/10.1101/2023.11.06.565732v1). bioRxiv, 2023-11.
+Lo, M. C., Siu, D. M., Lee, K. C., Wong, J. S., Yeung, C.F., Hsin, M. K., Ho, J. C., & Tsia, K. K. (2023). [Information-Distilled Generative Label-Free Morphological Profiling Encodes Cellular Heterogeneity](https://www.biorxiv.org/content/10.1101/2023.11.06.565732v2.abstract). bioRxiv, 2023-11.
 
 ## Setup
 
