@@ -4,11 +4,11 @@
 ![1_new CytoMAD](https://github.com/MichelleLCK/CytoMAD/assets/120153122/b1fad76e-1ca5-49aa-bcf5-686bbafa1ff5)
 
  
-The CytoMAD model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) coupled with the classification networks, which altogether enables robust cell images conversion among different image contrast and achieves batch information removal on the image level.
+The CytoMAD model is a generative deep learning model that integrates conditional GAN of [Pix2Pix](https://doi.org/10.1109/CVPR.2017.632) coupled with the classification networks, which altogether enables robust cell image conversion among different image contrast and achieves batch information removal on the image level.
 
 ### Preprint
 
-Lo, M. C., Siu, D. M., Lee, K. C., Wong, J. S., Hsin, M. K., Ho, J. C., & Tsia, K. K. (2023). [Information-Distilled Generative Label-Free Morphological Profiling Encodes Cellular Heterogeneity](https://www.biorxiv.org/content/10.1101/2023.11.06.565732v1). bioRxiv, 2023-11.
+Lo, M. C., Siu, D. M., Lee, K. C., Wong, J. S., Yeung, C.F., Hsin, M. K., Ho, J. C., & Tsia, K. K. (2023). [Information-Distilled Generative Label-Free Morphological Profiling Encodes Cellular Heterogeneity](https://www.biorxiv.org/content/10.1101/2023.11.06.565732v1). bioRxiv, 2023-11.
 
 ## Setup
 
